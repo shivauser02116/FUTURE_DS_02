@@ -1,0 +1,16 @@
+contract,contract_order,tenure_band,tenure_band_order,customers,churned,churn_rate_pct,small_group
+Month-to-month,1,0-6,1,1413,780,55.2,No
+Month-to-month,1,7-12,2,581,244,42.0,No
+Month-to-month,1,13-24,3,737,278,37.7,No
+Month-to-month,1,25-48,4,802,264,32.9,No
+Month-to-month,1,49-72,5,342,89,26.0,No
+One year,2,0-6,1,39,4,10.3,Yes
+One year,2,7-12,2,85,9,10.6,No
+One year,2,13-24,3,197,16,8.1,No
+One year,2,25-48,4,518,55,10.6,No
+One year,2,49-72,5,634,82,12.9,No
+Two year,3,0-6,1,29,0,0.0,Yes
+Two year,3,7-12,2,39,0,0.0,Yes
+Two year,3,13-24,3,90,0,0.0,No
+Two year,3,25-48,4,274,6,2.2,No
+Two year,3,49-72,5,1263,42,3.3,No
