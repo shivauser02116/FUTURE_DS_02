@@ -17,7 +17,7 @@ pip install -r requirements.txt
 streamlit run app/streamlit_app.py
 ```
 
-Live app: (add link after deploying)
+Live app: https://futuer-data-science-02.streamlit.app
 
 The app reads `data/telco_clean.csv` relative to its own location via `pathlib`, so it works from any working directory.
 
