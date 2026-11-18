@@ -640,7 +640,7 @@ with tab3:
     km_df = df[df["tenure"] > 0].copy()
 
     contract_configs = [
-        {"name": "Month-to-month", "color": "#D1495B", "textpos": "bottom center"},
+        {"name": "Month-to-month", "color": "#D1495B", "textpos": "bottom right"},
         {"name": "One year", "color": "#2A9D8F", "textpos": "bottom center"},
         {"name": "Two year", "color": "#1F3A5F", "textpos": "top center"},
     ]
@@ -727,7 +727,7 @@ with tab3:
             griddash="dot",
         ),
         yaxis=dict(
-            range=[30, 108],
+            range=[30, 112],
             tickvals=[40, 60, 80, 100],
             tickformat=".0f",
             showgrid=True,
@@ -844,7 +844,7 @@ with tab3:
     </table>
     """
     st.markdown(cohort_html, unsafe_allow_html=True)
-    st.caption("* small group, interpret with caution")
+    st.caption(r"\* small group, interpret with caution")
     st.caption("Tenure-based cohorts by plan; the data has no signup dates or region.")
 
     render_footer()

@@ -322,6 +322,33 @@ try:
 except Exception as e:
     check("A18: Default filters KPI exact texts", False, f"Error: {e}")
 
+# A19: Cohort footnote contains 'small group, interpret with caution' and starts with an asterisk (not bullet)
+try:
+    at = AppTest.from_file(str(APP_PATH), default_timeout=30)
+    at.run()
+
+    footnote_match = False
+    footnote_val = ""
+    for c in at.caption:
+        text = c.value or ""
+        if "small group, interpret with caution" in text:
+            footnote_val = text
+            stripped = text.strip()
+            # Check starts with asterisk (or escaped asterisk) and not a bullet
+            starts_with_asterisk = stripped.startswith(("*", r"\*", "&#42;"))
+            not_bullet = not stripped.startswith(("•", "-", "+", "&bull;"))
+            if starts_with_asterisk and not_bullet:
+                footnote_match = True
+            break
+
+    check(
+        "A19: Cohort footnote starts with an asterisk (not bullet) and contains text",
+        footnote_match,
+        repr(footnote_val),
+    )
+except Exception as e:
+    check("A19: Cohort footnote starts with an asterisk (not bullet) and contains text", False, f"Error: {e}")
+
 
 # ===========================================================================
 # SECTION B: Data & Kaplan-Meier Mathematical Correctness
