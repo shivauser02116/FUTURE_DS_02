@@ -9,9 +9,19 @@ A telecommunications provider seeks to understand the primary drivers of custome
 [Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) (Kaggle): 7,043 customers, 21 attributes covering demographics, account information, and subscribed services. Not owned by me; used for educational purposes.
 
 ## Dashboard
-The analysis was designed around a 4-frame executive dashboard (Overview, Churn drivers, Customer lifetime, Action plan).
-- Images directory (`images/`): No static PNG page mockups exist in the repository (the interactive UI was created and rendered directly via the Streamlit application and Figma Make web components).
-- PDF report (`dashboard/FUTURE_DS_02_dashboard.pdf`): Currently pending compilation; exploratory and executive views are available live in the interactive application.
+The executive dashboard is compiled into a multi-page PDF document ([dashboard/FUTURE_DS_02_dashboard.pdf](dashboard/FUTURE_DS_02_dashboard.pdf)) and rendered as static 16:9 images for each analytical frame:
+
+### Page 1: Overview
+![Page 1: Overview](images/page_1.png)
+
+### Page 2: Churn Drivers
+![Page 2: Churn Drivers](images/page_2.png)
+
+### Page 3: Customer Lifetime
+![Page 3: Customer Lifetime](images/page_3.png)
+
+### Page 4: Action Plan
+![Page 4: Action Plan](images/page_4.png)
 
 ## Data cleaning
 Summary of [`docs/cleaning_log.md`](docs/cleaning_log.md):
@@ -90,14 +100,18 @@ pip install -r requirements.txt
 # 2. Data cleaning (reads raw data and produces data/telco_clean.csv)
 python3 scripts/01_clean_telco.py
 
-# 3. Tableau data export (generates customer, curve, cohort, and driver CSVs in data/tableau/)
+# 3. Build static dashboard (generates dashboard/FUTURE_DS_02_dashboard.pdf and images/page_1..4.png)
+python3 scripts/02_build_dashboard.py
+
+# 4. Tableau data export (generates customer, curve, cohort, and driver CSVs in data/tableau/)
 python3 scripts/05_prepare_tableau_data.py
 
-# 4. Run automated test suites
+# 5. Run automated test suites
+python3 scripts/03_check_dashboard.py
 python3 scripts/04_check_app.py
 python3 scripts/06_check_tableau_data.py
 
-# 5. Launch interactive Streamlit application
+# 6. Launch interactive Streamlit application
 streamlit run app/streamlit_app.py
 ```
 
@@ -116,6 +130,7 @@ FUTURE_DS_02/
 ├── app/
 │   └── streamlit_app.py                # 4-frame interactive executive Streamlit dashboard
 ├── dashboard/                          # Dashboard export directory
+│   └── FUTURE_DS_02_dashboard.pdf      # Multi-page 16:9 executive PDF dashboard
 ├── data/
 │   ├── WA_Fn-UseC_-Telco-Customer-Churn.xls  # Raw customer churn dataset
 │   ├── telco_clean.csv                 # Cleaned dataset (7,043 rows x 24 columns)
@@ -128,11 +143,18 @@ FUTURE_DS_02/
 ├── docs/
 │   ├── cleaning_log.md                 # Data cleaning log & step-by-step audit
 │   └── tableau_data_dictionary.md      # Field definitions & Tableau implementation notes
+├── images/                             # Static 16:9 dashboard image exports
+│   ├── page_1.png                      # Frame 1: Overview
+│   ├── page_2.png                      # Frame 2: Churn drivers
+│   ├── page_3.png                      # Frame 3: Customer lifetime
+│   └── page_4.png                      # Frame 4: Action plan
 ├── public/
 │   ├── .gitattributes
 │   └── favicon.png
 ├── scripts/
 │   ├── 01_clean_telco.py               # Data cleaning & feature engineering script
+│   ├── 02_build_dashboard.py           # Matplotlib static PDF & PNG dashboard generator
+│   ├── 03_check_dashboard.py           # Static dashboard verification suite (34 checks)
 │   ├── 04_check_app.py                 # Streamlit UI & mathematical validation suite (22 checks)
 │   ├── 05_prepare_tableau_data.py      # Tableau-ready export preparation pipeline
 │   └── 06_check_tableau_data.py        # Tableau dataset integrity verification suite (70 checks)
